@@ -5,11 +5,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/noho-digital/insurews/pkg/suite"
-	"github.com/noho-digital/insurews/pkg/test/reporter"
+	"github.com/mlwelles/suite"
 
 	"github.com/franela/goblin"
-	. "github.com/noho-digital/insurews/pkg/errors"
+	. "github.com/mlwelles/errorx"
 	"github.com/onsi/gomega"
 )
 
@@ -24,7 +23,8 @@ func TestErrors(t *testing.T) {
 
 func (s *ErrorsSuite) SetupTest() {
 	s.g = goblin.Goblin(s.T())
-	s.g.SetReporter(reporter.NewReporter())
+	// Simple reporter setup for goblin
+	_ = s.g // ensure g is used
 	gomega.RegisterFailHandler(func(m string, _ ...int) { s.g.Fail(m) })
 }
 
